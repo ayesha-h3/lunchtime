@@ -197,18 +197,18 @@ label start:
     label chooserank:
         m "Well, clearly we don't have much time left."
         m "Our army needs its leader. Someoe who isn't afraid to take charge and fight."
-        if corpses>2
+        if corpses>2:
             m "And considering that all my friends are dead, I guess you're the only one left."
-        else
+        else:
             m "And clearly you've proven yourself to be capable."
         m "So, what do you say? Are you up to the task you came here to fulfill?"
         y "You guys need to stop saying that. And..."
         menu:
             "I would be honored.":
                 jump general
-            "I'm not sure if I'm ready yet."
+            "I'm not sure if I'm ready yet.":
                 jump footman
-            "Who said I would join you?" if corpses>2
+            "Who said I would join you?" if corpses>2:
                 jump evil
 
     label general:
@@ -272,12 +272,12 @@ label start:
         mystery "You will die here with no one to mourn you. Not in this world or your own." 
         "As the VOID encroaches the air seems to still. When the inky blackness reaches “The Man who Lost His Name” He turns and looks at you one last time."
         "The Man Who Lost His Name disperses in a puff of black smoke."
-        "The Man Who Lost His Name” blocks his forgotten memory from ———(character name)."
+        "The Man Who Lost His Name blocks his forgotten memory from ———(character name)."
         "Two souls are left in this world. Your name becomes a blot in the history books that shall never be written."
-        "As the Void comes closer you think, ‘How beautiful. How terrible.’ These actions are your own and so too are the consequences. Your skin unfurls from the gore that is your flesh. Fat melts off of muscle and meat falls off bone."
-        "You are not of course the only victim. Even the text box that “Narrated” your journey falls victim to the encroaching VOID. Perhaps you find solace in this."
-        "All “I” can say is this seems to be a moment to rejoice! “Our” murderer seems to be dying the same way they killed “us”.
-        "Your “END” is Oblivion."
+        "As the Void comes closer you think, How beautiful. How terrible. These actions are your own and so too are the consequences. Your skin unfurls from the gore that is your flesh. Fat melts off of muscle and meat falls off bone."
+        "You are not of course the only victim. Even the text box that Narrated your journey falls victim to the encroaching VOID. Perhaps you find solace in this."
+        "All I can say is this seems to be a moment to rejoice! Our murderer seems to be dying the same way they killed us."
+        "Your END is Oblivion."
         jump theend
 
     label voidDominion:
@@ -293,5 +293,5 @@ label start:
 
     
     # This ends the game.
-    label theend
+    label theend:
         return
