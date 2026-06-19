@@ -138,6 +138,7 @@ label start:
     label savecoin:
 
     label sacrificecoin:
+        $ corpses +=1
 
     label manwholostname:
         y "Who are you?"
@@ -183,16 +184,38 @@ label start:
 
 
     label meetdancer:
+        show dancer side
 
     label savedancer:
 
     label sacrificedancer:
+        show dancer shocked
+        show dancer death1
+        show dancer death2
+        show dancer dust
+        hide dancer
+        show jhumka
+        $ corpses +=1
+        hide jhumka
 
     label crossroads:
 
     label savedottie:
 
     label sacrificedottie:
+        show dottie sad
+        d "What's...happening?"
+        show dottie death1
+        d "It was nice knowing you..."
+        show dottie death2
+        y "I'm sorry, Dottie."
+        show dottie death3
+        d "Goodbye."
+        show dottie inkstained
+        "All that remains where Dottie once stood is an inkstained leaflet."
+        "You pick it up, a reminder of what you lost."
+        hide dottie
+        $ corpses +=1
 
     label chooserank:
         m "Well, clearly we don't have much time left."
