@@ -10,7 +10,7 @@ define mystery = Character("???")
 define m = Character("Man Who Lost His Name")
 define of = Character("Orange Fish", color="a15005")
 define bf = Character("Blue Fish", color="#0508a1")
-define da = Character("Riya", color="#f296e3")
+define da = Character("Dancer", color="#f296e3")
 
 # The game starts
 label start:
@@ -71,12 +71,14 @@ label start:
                 jump narrator
 
         label birds:
+            show bird
             "A bright yellow bird lands on your face, chirping happily."
             b "Hey Dottie, did you see this weirdo?"
             y "Was that..."
             "You try poking at the bird."
             b "Ew! Get your fat finger away from me!"
             y "Ow! What was that for?"
+            hide bird
             $ confusion +=3
             jump dottie
 
@@ -92,7 +94,7 @@ label start:
         show dottie happy at right
         d "She awakens!"
         y "Who...awakens?"
-        show coinflip side at left
+        show coinflip side at top, left
         c "I thought she was going to be taller, if I'm being honest."
         d "Well, beggars can't be choosers. I guess we'll have to make do with what we got."
         menu:
@@ -102,7 +104,7 @@ label start:
                 jump selfaware
 
     label whosthis:
-        $ confusion += 3
+        $ confusion += 5
         c "Wait, are you not the General?"
         d "Coinflip! Stop being so rude! I apologize on my friend's behalf."
         y "This has got to be some sort of dream."
@@ -112,8 +114,9 @@ label start:
         c "See, that's where you're mistaken. You ARE the General, obviously."
         y "...how?"
         d "What I think he's trying to say is that you fit the profile we were given."
-        show coinflip concern at left
+        show coinflip concern 
         c "So...do you know anything about stopping world-destroying entities?"
+        show coinflip side 
         jump meetvoid
         
 
@@ -134,6 +137,7 @@ label start:
         y "That was a paper cut. What?"
         d "How is a piece of paper supposed to pinch you? It's the best I could do."
         y "Wait, did you say CALVIN COOLIDGE?"
+        show dottie sad
         d "You asked who the president is right now!"
         y "I think if I think about this any more my brain is going to explode."
         y "Wait, what was that...situation you mentioned earlier? The one I supposedly already know about?"
@@ -143,13 +147,35 @@ label start:
 
 
     label meetvoid:
+        hide dottie
+        hide coinflip
+        mystery "Would you look at that."
+        d "Was that...?"
+        c "No. She doesn't come out like some sort of foot soldier."
+        mystery "Oh, but it's such a special occasion! I simply HAD to come see this for myself."
+        d "When I say run, RUN."
+        y "What's happening? Who is that?"
+        c "The situation."
+        show voidqueen with dissolve
+        "A strange figure steps out of the shadows."
+        v "Well, well, well. So it looks like you've found your little leader. A bit scrawny, isn't she." 
+        "The area surrounding the figure looks strange, almost like a faded-out photo."
+        hide voidqueen with dissolve
+        "And as soon as she appeared, she vanishes."
+        show dottie sad
+        show coinflip angry
+        y "You didn't answer my question. Who is that?"
+        d "The...Void Queen."
+        c "She sucks the color out of everything she touches. Literally."
+        y "How did she just disappear like that? Are we safe now?"
+        
 
     label savecoin:
         $ benevolence += 5
 
     label sacrificecoin:
         hide dottie
-        show coinflip at center
+        show coinflip side
         c "It's okay, kid. Sometimes, you gotta make the hard decisions. It's war, what did you expect?"
         show coinflip death1
         c "At least I know it's not going to be for nothing. I was honored to be of service."
@@ -158,14 +184,17 @@ label start:
         c "I know you'll do the right thing when the time calls for it."
         show coinflip rust
         "There's nothing left to do now but keep moving."
+        hide coinflip
         $ corpses +=1
 
     label manwholostname:
+        show noname at right
         y "Who are you?"
         mystery "That's a good question. She's a smart one, isn't she?"
         mystery "My name is..."
         mystery "Oh yeah! I lost it."
         y "You lost...your name?"
+        show dottie happy at right
         d "It's a complicated situation. He's just a tad off his rockers is all.."
         mystery "BUt since you're human, your little flappy thing doesn't make the same sounds as us. So I think you can call me The Man Who Lost His Name!"
         y "That's a bit of a mouthful, though, don't you think?"
@@ -180,6 +209,11 @@ label start:
         y "Aww, they're kind of cute!"
         m "It's customary for a potential leader to be tested by the fish."
         y "Wait, huh?"
+        "You look down in the lake."
+        hide dottie
+        hide noname
+        show bluefish
+        show orangefish
         bf "One of us tells the truth..."
         of "And one of us lies."
         "Which fish do you trust?"
@@ -194,6 +228,9 @@ label start:
         bf "I'm the one that tells LIES!"
         of "Congratulations, your judgment rings true!"
         of "Also, you weren't supposed to tell her that."
+        hide bluefish
+        hide orangefish
+        show noname
         m "You were right! She IS some sort of miracle!"
         jump voidlake
 
@@ -202,16 +239,26 @@ label start:
         of "He's lying."
         y "What...?"
         $ confusion +=5
+        hide orangefish
+        hide bluefish
+        show dottie happy at right
+        show noname at left
         d "It's okay, you don't have to worry about them. The blue fish tells lies."
         m "Don't feel bad about getting it wwrong. They get in your head like that."
         d "That's why any future leader would have advisors! Like us!"
         jump voidlake
 
     label voidlake:
+        hide dottie
+        hide noname
+        show orangefish
+        show bluefish
         of "Hey Blue, do you...see that?"
         bf "I don't see anything at all. Nothing whatsoever!"
         of "Oh, great."
         of "Hey, Dottie? I think you're going to want to have a look at this."  
+        hide bluefish
+        hide orangefish
         "You and the group look to the lake's opposite shore, where the sand has started turning grey."
         d "How is it already here? I didn't think it would catch up to us this fast."
         m "Now's probably a good time to skedaddle before we all become void toast."
@@ -231,6 +278,10 @@ label start:
         m "Well, I guess we're doing this now."
         "The Man Who Lost His Name follows, grabbing the blue fish."
         d "We can't keep them out of the water for too long. Over there should be a small pond where they can take shelter."
+        hide dottie
+        hide noname
+        show orangefish
+        show bluefish
         of "Thank you! Thank you thank you thank you!" 
         bf "No one's ever showed us this much compassion before. Most people just think we're an annoying gimmick."
         menu:
@@ -242,12 +293,20 @@ label start:
 
     label what:
         $confusion += 3
+        hide orangefish
+        hide bluefish
+        show noname at left
+        show dottie happy at right
         m "Maybe she's insane. Maybe she's jealous. Who knows!"
         of "Well, we're grateful nonetheless."
         d "That's our future General!"
         jump meetdancer
     
     label outforblood:
+        hide orangefish
+        hide bluefish
+        show dottie happy at right 
+        show noname at left
         m "Don't worry, you'll get your opportuntiy for revenge soon enough."
         d "Be patient. And don't encourage her to do something irrational!"
         y "This is only one of what, tens of places she's destroyed? Hundreds? Thousands?"
@@ -260,7 +319,11 @@ label start:
         of "I've always hoped that I'd be able to go out with a bang. ENSURE OUR DEATHS WERE NOT IN VAIN, YOUNG WARRIOR!"
         bf "You were always the melodramatic one."
         of "Sure, sure."
+        hide orangefish
+        hide bluefish
         "The darkness spreads across the surface of the lake. As it approaches the fish, you wonder if this really was the only thing you could do."
+        show dottie sad at right
+        show noname at left
         d "He's right, you know. You won't always be able to save everyone."
         "You're not sure if what Dottie said is true. What if you had tried, at least?"
         "What if, what if, what if. There are so many things that could have been changed."
@@ -270,9 +333,20 @@ label start:
 
 
     label meetdancer:
+        hide noname
+        d "Okay, you need to be REALLY careful here. We don't want to scare her."
+        y "Who's here?"
+        "CRACK! The sound of a broken twig rings eerily."
         hide dottie
-        show dancer side at left
-        da "Who...are you?"
+        show dancer shocked at left
+        da "Where did you come from? Who are you? Why are you here?"
+        d "It's me!"
+        m "And me! And a friend."
+        show dancer side
+        da "Oh. Okay..."
+        da "No one followed you here, right?"
+        m "Of course not!"
+        m "So that was awful timing."
 
     label savedancer:
 
@@ -309,7 +383,7 @@ label start:
         m "Well, clearly we don't have much time left."
         m "Our army needs its leader. Someoe who isn't afraid to take charge and fight."
         if corpses>2:
-            m "And considering that all my friends are dead, I guess you're the only one left."
+            m "And considering that my friends are dying left and right, I guess you're the only one left."
         else:
             m "And clearly you've proven yourself to be capable."
         m "So, what do you say? Are you up to the task you came here to fulfill?"
@@ -319,11 +393,11 @@ label start:
                 jump general
             "I'm not sure if I'm ready yet.":
                 jump footman
-            "Who said I would join you?" if corpses>2:
+            "Who said I would join you?" if corpses>3:
                 jump evil
 
     label general:
-
+        m ""
     label footman:
 
     label evil:
