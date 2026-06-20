@@ -2,14 +2,15 @@
 # establishing our cast of characters !
 define y = Character("You", color="#d28ef1")
 define f = Character("Luca")
-define d = Character("Dottie")
+define d = Character("Dottie", color="#2b2b2b")
 define c = Character("Coinflip")
 define v = Character("Void Queen")
-define b = Character("Bird")
+define b = Character("Bird", color="#2dbab8")
 define mystery = Character("???")
 define m = Character("Man Who Lost His Name")
-define of = Character("Orange Fish")
-define bf = Character("Blue Fish")
+define of = Character("Orange Fish", color="a15005")
+define bf = Character("Blue Fish", color="#0508a1")
+define da = Character("Riya", color="#f296e3")
 
 # The game starts
 label start:
@@ -146,10 +147,14 @@ label start:
         mystery "My name is..."
         mystery "Oh yeah! I lost it."
         y "You lost...your name?"
-        d "It's complicated."
-        mystery "That's why they call me, The Man Who Lost His Name!"
+        d "It's a complicated situation. He's just a tad off his rockers is all.."
+        mystery "BUt since you're human, your little flappy thing doesn't make the same sounds as us. So I think you can call me The Man Who Lost His Name!"
         y "That's a bit of a mouthful, though, don't you think?"
         m "Well, do you have a better idea? And besides, it has a nice ring to it."
+        m "Anyways, where are you guys headed?"
+        d "We were on our way to the lake before heading to _____"
+        m "No way, that's my favorite part! I'm tagging along now."
+        d "If you say so?"
 
     label fish:
         d "We've arrived at the lake, home to the fish!"
@@ -184,7 +189,9 @@ label start:
 
 
     label meetdancer:
-        show dancer side
+        hide dottie
+        show dancer side at left
+        da "Who...are you?"
 
     label savedancer:
 
