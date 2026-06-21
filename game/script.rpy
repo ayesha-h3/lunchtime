@@ -1,7 +1,7 @@
 ﻿
 # establishing our cast of characters !
 define y = Character("You", color="#d28ef1")
-define f = Character("Luca")
+define f = Character("Luca", color="#347b9e")
 define d = Character("Dottie", color="#2b2b2b")
 define c = Character("Coinflip")
 define v = Character("Void Queen")
@@ -21,7 +21,8 @@ label start:
     $ benevolence = 0 #your leadership capability
     $ confusion = 0 
 
-    "It's a warm spring day. You and your friend are walking in the city, but now you're hungry."
+    "It's a warm spring day. You and your friend Luca are walking in the city, heading to get lunch."
+    show luca stand
 
     f "So, where do we want to head for lunch? I was thinking of this sushi place that I've been wanting to try out."
 
@@ -41,6 +42,7 @@ label start:
         y "Awesome! I don't see any cars coming, let's go--"
         "In your excitement, you didn't see that the walk sign hadn't turned on yet."
         f "WAIT--"
+        hide luca
         "THUD!"
         "Everything goes black."
         $ insanity+=1
@@ -71,13 +73,19 @@ label start:
                 jump narrator
 
         label birds:
-            show bird
-            "A bright yellow bird lands on your face, chirping happily."
+            show bird inface
+            "A stark black bird lands on your face, chirping happily."
             b "Hey Dottie, did you see this weirdo?"
             y "Was that..."
             "You try poking at the bird."
             b "Ew! Get your fat finger away from me!"
-            y "Ow! What was that for?"
+            show bird finger
+            y "OW! MY FINGER!"
+            "You look down at your hand in shock, only to find that all your fingers are still fully intact."
+            y "What? How did that..."
+            mystery "It's just a trick of the light! Is that what you call it? Anyways, don't worry about it."
+            y "I just watched my finger get eaten off by a bird, of course I'm worried!"
+            y "Wait, who was that? Where are you? Come out!"
             hide bird
             $ confusion +=3
             jump dottie
@@ -87,6 +95,8 @@ label start:
             "Wait, you mean this voice?"
             y "Yeah, who are you? What is this, The Stanley Parable?"
             "Uhhh...sure?"
+            y "Is this some sort of internal monologue? Am I going insane?"
+            "No and no. It's best if you don't think about it too hard."
             $ insanity +=5
             jump dottie
 
@@ -168,6 +178,13 @@ label start:
         d "The...Void Queen."
         c "She sucks the color out of everything she touches. Literally."
         y "How did she just disappear like that? Are we safe now?"
+        show coinflip side
+        c "Think so!"
+        "You see a flash of something black skitter across the clearing where the Void Queen just was."
+        y "You saw that, right?"
+        d "I think that was one of the Void Queen's beetles. They're deadly if you provoke them. Thankfully--"
+        c ""
+
         
 
     label savecoin:
