@@ -111,7 +111,7 @@ label start:
 
     label dottie:
         "You get up, trying to adjust to your new surroundings."
-        scene woods with moveintop
+        scene woods with fade
         show dottie happy at right with moveinright
         d "She awakens!"
         y "Who...awakens?"
