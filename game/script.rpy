@@ -12,6 +12,8 @@ define of = Character("Orange Fish", color="a15005")
 define bf = Character("Blue Fish", color="#0508a1")
 define da = Character("Priya", color="#f296e3")
 
+
+
 # The game starts
 label start:
 # some different variables
@@ -20,11 +22,10 @@ label start:
     $ insanity = 0 #how willing you are to stay
     $ benevolence = 0 #your leadership capability
 
-    "It's a warm spring day. You and your friend Luca are walking in the city, heading to get lunch."
+    scene intersection
     show luca stand
-
+    "It's a warm spring day. You and your friend Luca are walking in the city, heading to get lunch."
     f "So, where do we want to head for lunch? I was thinking of this sushi place that I've been wanting to try out."
-
     y "Ooh! Sounds delicious. How long is the walk?"
     f "It looks like if we take the route to the left it'll be faster, but more traffic. If we go to the right it'll be longer but calmer."
     y "Well which way do you want to go?"
@@ -40,9 +41,14 @@ label start:
         f "Okay! It says this intersection is busy often but we should be fine."
         y "Awesome! I don't see any cars coming, let's go--"
         "In your excitement, you didn't see that the walk sign hadn't turned on yet."
+        show luca concern
         f "WAIT--"
         hide luca
+        "You look to your left to be met with the blinding glow of a set of headlights."
+        show truck with zoomin
         "THUD!"
+        hide truck
+        hide intersection
         "Everything goes black."
         $ insanity+=1
         jump forest
@@ -52,16 +58,20 @@ label start:
         y "Ok, cool! Let's get going then."
         f "Come on! The crossing is open now."
         "You've only taken a few steps before the ground begins to rumble."
+        show luca concern
         f "What is THAT?"
         "A crack in the road appears beneath your feet."
         f "Why aren't you moving? GET AWAY FROM THAT THING!"
+        hide luca
         y "I'm TRYING!"
         "You try to jump away but it's too late. The crack widens to a gaping hole...pulling you into the newly opened abyss."
+        hide intersection
         jump forest
     
 
     label forest:
         "You open your eyes."
+        scene treesup
         y "...huh?"
         "Do you hear that sound?"
 
@@ -72,7 +82,7 @@ label start:
                 jump narrator
 
         label birds:
-            show bird inface
+            show bird inface with vpunch
             "A stark black bird lands on your face, chirping happily."
             b "Hey Dottie, did you see this weirdo?"
             y "Was that..."
@@ -100,10 +110,14 @@ label start:
             jump dottie
 
     label dottie:
-        show dottie happy at right
+        "You get up, trying to adjust to your new surroundings."
+        scene woods with moveintop
+        show dottie happy at right with moveinright
         d "She awakens!"
         y "Who...awakens?"
-        show coinflip side at topleft
+        show coinflip side:
+            xalign 0.2
+            yalign 0.6
         c "I thought she was going to be taller, if I'm being honest."
         d "Well, beggars can't be choosers. I suppose we ought to make do with what we got."
         menu:
@@ -123,13 +137,17 @@ label start:
         c "See, that's where you're mistaken. You ARE the General, obviously."
         y "...how?"
         d "Why, I think he's trying to say is that you fit the description we were given."
-        show coinflip concern at topleft
+        show coinflip concern:
+            xalign 0.2
+            yalign 0.6
         c "So...do you know anything about stopping world-destroying entities?"
         y "Is this the Avengers or something? ARE YOU RECRUITING ME TO THE AVENGERS?"
         c "Um...sure? Whatever gets you adjusted to the situation, I guess."
         y "Situation? Are we speaking in code now?"
         d "You'll learn soon enough."
-        show coinflip side at topleft
+        show coinflip side:
+            xalign 0.2
+            yalign 0.6
         jump meetvoid
         
 
@@ -160,42 +178,58 @@ label start:
 
 
     label meetvoid:
+        "You hear a rustling behind you. You turn around to find the source of the noise, but it looks like nothing is there."
         hide dottie
         hide coinflip
         mystery "Would you look at that."
         d "It can't be."
         c "No. She doesn't come out like some sort of foot soldier."
+        scene bg greyforest
         mystery "Oh, but it's such a special occasion! I simply HAD to come see this for myself."
         d "I'm sure you don't feel like flirting with the undertaker in your first hour here. When I say run, RUN."
         y "What's happening? Who is that?"
         c "The situation."
         show voidqueen with dissolve
-        "A strange figure steps out of the shadows."
+        "A strange figure steps out from behind one of the trees."
         v "Well, well, well. So it looks like you've found your little leader. A bit scrawny, isn't she." 
         "The area surrounding the figure looks strange, almost like a faded-out photo."
         hide voidqueen with dissolve
         "And as soon as she appeared, she vanishes."
+        scene bg woods
         show dottie sad at left
-        show coinflip angry at topright
+        show coinflip angry:
+            xalign 1.0
+            yalign 0.6
         y "You didn't answer my question. Who is that?"
         d "The...Void Queen."
         c "She sucks the color out of everything she touches. Literally."
         y "How did she just disappear like that? Are we safe now?"
-        show coinflip side at topright
+        show coinflip side:
+            xalign 1.0
+            yalign 0.6
         c "Think so!"
         "You see a flash of something black skitter across the clearing where the Void Queen just was."
         y "You saw that, right?"
         d "I think that was one of the Void Queen's beetles. They're deadly if you provoke them. Thankfully--"
         c "Hey sucker! Looks like your little queen is a COWARD!"
         d "Coinflip, why can't you just keep your yap shut for once?."
+        hide dottie
+        hide coinflip
+        show beetle with hpunch
         "The black creature stops. It stares you down with piercing eyes."
         mystery "hisssssss..."
+        hide beetle
+        show dottie sad
         d "I ain't getting popped tonight. RUN!"
-        "You sprint in the other direction as fast as you can. Dottie follows behind, ______. Coinflip trails behind."
+        "You sprint in the other direction as fast as you can. Dottie follows, but Coinflip trails behind."
         c "Don't give me that look. I'll be just fine."
         d "You may want to look behind you."
+        hide dottie
+        show beetle
         "The beetle rests on its hind legs, looking ready to pounce. It glares directly at Coinflip."
         y "It looks like it wants to go after Coinflip. Is he going to be okay?"
+        hide beetle
+        show coinflip side at truecenter
         c "I told you already, I'll be fine!"
         d "Do you seriously think you can outrun that beetle? There's no way."
         menu:
@@ -212,14 +246,18 @@ label start:
         "You slow down for a second, then turn around."
         d "Are you full of prunes all of a sudden? What are you doing?"
         hide dottie
-        show coinflip concern at top
+        show coinflip concern at truecenter
         c "She's right? What are you--why are you--"
         "You grab Coinflip in your palm. He's the size and weight of a normal quarter, so it's fairly easy to do so."   
         y "You didn't actually think we'd leave you to outrun that thing yourself, did you?"
         "You start running again, though the beetle looks less combative now."
         c "I don't even know what to say. Thank you? I told you I'd be fine though."
-        d "You're nutty but that's going a tad too far."
-        show coinflip side at topleft
+        "Dottie scoffs behind you."
+        d "You're nutty, but even that's going a tad too far."
+        "Once you reach the edge of the forest, you let Coinflip go."
+        show coinflip side:
+            xalign 0.3
+            yalign 0.6
         show dottie happy at right
         c "So I guess she DOES have General potential! We need to gather the others. We might actually stand a chance now!"
         d "One of us should go and start gathering the others."
@@ -227,7 +265,9 @@ label start:
         y "You're not a burden."
         d "Actually, he's right that he should do it. Not because he wouldn't be valuable here, but he has a simply unmatched ability to rally people around a cause."
         c "It's been an honor to be here with you, but it's time for us to part ways."
+        y "Thanks for everything!"
         hide coinflip
+        "Now, we'll head for _____."
         $ coinalive = True
         $ benevolence += 5
         jump manwholostname
@@ -252,6 +292,7 @@ label start:
         jump manwholostname
 
     label manwholostname:
+        scene bg shore
         show dottie happy at left
         d "So, in order to determine if you are worthy of the General title, you must first face a series of trials."
         d "We're going to meet the one who will be able to guide you through them."
@@ -269,12 +310,12 @@ label start:
         y "That's a bit of a mouthful, though, don't you think?"
         m "Well, do you have a better idea? And besides, it has a nice ring to it."
         m "Anyways, where are you guys headed?"
-        d "We were on our way to the lake before for the first trial."
+        d "We were on our way to the other end of the lake for the first trial."
         m "No way, that's my favorite part! I'm tagging along now."
         d "If you say so?"
 
     label fish:
-        d "We've arrived at the lake, home to the fish! As well as the first trial."
+        d "This lake is home to the guardian fish! As well as the first trial."
         y "Aww, they're kind of cute!"
         hide dottie
         show noname neutral
@@ -283,6 +324,7 @@ label start:
         "You look down in the lake."
         hide dottie
         hide noname
+        scene bg lake
         show bluefish
         show orangefish
         bf "One of us tells the truth..."
@@ -301,6 +343,7 @@ label start:
         of "Also, you weren't supposed to tell her that."
         hide bluefish
         hide orangefish
+        scene bg shore
         show noname happy
         m "You were right! She IS some sort of miracle!"
         jump voidlake
@@ -312,6 +355,7 @@ label start:
         $ insanity +=5
         hide orangefish
         hide bluefish
+        scene bg shore
         show dottie happy at right
         show noname neutral at left
         d "It's okay, you don't have to worry about them. The blue fish tells lies."
@@ -322,6 +366,7 @@ label start:
     label voidlake:
         hide dottie
         hide noname
+        scene bg lake
         show orangefish
         show bluefish
         of "Hey Blue, do you...see that?"
@@ -330,6 +375,7 @@ label start:
         of "Hey, Dottie? I think the void is here."  
         hide bluefish
         hide orangefish
+        scene bg shore
         "You and the group look to the lake's opposite shore, where the sand has started turning grey."
         d "How is it already here? I didn't think it would catch up to us this fast."
         m "Now's probably a good time to skedaddle before we all become void toast."
@@ -351,6 +397,7 @@ label start:
         d "We can't keep them out of the water for too long. Over there should be a small pond where they can take shelter."
         hide dottie
         hide noname
+        scene bg lake
         show orangefish
         show bluefish
         of "Thank you! Thank you thank you thank you!" 
@@ -366,6 +413,7 @@ label start:
         $insanity += 3
         hide orangefish
         hide bluefish
+        scene bg shore
         show noname neutral at left
         show dottie happy at right
         m "Maybe she's insane. Maybe she's jealous. Who knows!"
@@ -377,6 +425,7 @@ label start:
     label outforblood:
         hide orangefish
         hide bluefish
+        scene bg shore
         show dottie happy at right 
         show noname neutral at left
         m "Don't worry, you'll get your opportunity for revenge soon enough."
@@ -394,6 +443,7 @@ label start:
         hide orangefish
         hide bluefish
         "The darkness spreads across the surface of the lake. As it approaches the fish, you wonder if this really was the only thing you could do."
+        scene bg shore
         show dottie sad at right
         show noname sad at left
         d "He's right, you know. You won't always be able to save everyone."
@@ -406,9 +456,10 @@ label start:
 
     label meetdancer:
         hide noname
+        scene bg cave
         d "Okay, you need to be REALLY careful here. We don't want to scare her."
         y "Who's here?"
-        "CRACK! The sound of a broken twig rings eerily."
+        "CRACK! A crystal's vibrations ring eerily."
         hide dottie
         show dancer shocked
         da "Where did you come from? Who are you? Why are you here?"
@@ -518,6 +569,7 @@ label start:
         da "Thank you. I don't know why I froze up. I'm not even sure if I would have moved if you hadn't done that."
         y "It's nothing, don't worry about it."
         da "I guess you aren't as hopeless as I thought."
+        $danceralive = True
         jump crossroads
 
     label sacrificedancer:
@@ -536,12 +588,46 @@ label start:
         "Soon enough, there's nothing left of her."
         hide dancer
         show jhumka
-        "All that's left of her is a broken jhumka"
+        "All that's left of her is a broken jhumka, glistening in the sunlight passing through the cover of the trees."
         $ corpses +=1
+        $danceralive = False
         hide jhumka
         jump crossroads
 
     label crossroads:
+        scene bg storm
+        d "So, ideally we would have three more trials, but clearly we don't have the time for that."
+        m "The void keeps coming after us."
+        menu:
+            "So what does that mean?":
+                jump unsure
+            "What should we do, then?":
+                jump speedrun
+    
+    label unsure:
+        m "It means that we need to prepare to fight back. Soon."
+        y "So what do we need to do?"
+        d "Find a general."
+        m "And also run."
+        d "Whatever do you mean?"
+        m "ANOTHER beetle! Behind you!"
+        menu:
+            "Run as fast as you can.":
+                jump sacrificedottie
+            "Attack the beetle.":
+                jump savedottie
+    
+    label speedrun:
+        d "I said we should just make you the general already, considering that you're the only remotely qualified one."
+        y "ME? Qualified?"
+        m "Well, you did okay enough in the trials we DID make it around to."
+        menu:
+            "Run as fast as you can.":
+                jump sacrificedottie
+            "Attack the beetle.":
+                jump savedottie
+
+
 
     label savedottie:
 
@@ -561,10 +647,10 @@ label start:
         $ corpses +=1
 
     label chooserank:
-        m "Well, clearly we don't have much time left."
+        m "Well, we're running out of time."
         m "Our army needs its leader. Someone who isn't afraid to take charge and fight."
-        if corpses>2:
-            m "And considering that my friends are dying left and right, I guess you're the only one left."
+        if corpses>3:
+            m "And considering that my friends are all dead, I guess you're the only one left."
         else:
             m "And clearly you've proven yourself to be capable."
         m "So, what do you say? Are you up to the task you came here to fulfill?"
@@ -573,13 +659,13 @@ label start:
             "I would be honored.":
                 jump general
             "I'm not sure if I'm ready yet.":
-                jump footman
+                jump soldier
             "Who said I would join you?" if corpses>3:
                 jump evil
 
     label general:
-        m ""
-    label footman:
+        
+    label soldier:
 
     label evil:
         m "...what do you mean?"
