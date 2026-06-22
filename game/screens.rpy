@@ -135,7 +135,7 @@ style window:
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-    background Transform("gui/textbox.png", zoom=1.5, xalign=0.5, yalign=1.0)
+    background Transform("gui/textbox.webp", zoom=1.5, xalign=0.5, yalign=1.0)
 
 style namebox:
     xpos gui.name_xpos
