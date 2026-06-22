@@ -29,7 +29,7 @@ define config.version = "1.0"
 ## Text that is placed on the game's about screen. Place the text between the
 ## triple-quotes, and leave a blank line between paragraphs.
 
-define gui.about = _p("""
+define gui.about = _p("""a visual novel game made for the summer 2026 Girls Got Game Jam!\n\n art: mnnymnky \n\n programming: sleepymeep, kjoy116 \n\n writing: mnnymnky, sleepymeep
 """)
 
 
