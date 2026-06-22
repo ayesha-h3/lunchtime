@@ -2,7 +2,7 @@
 # establishing our cast of characters !
 define y = Character("You", color="#d28ef1")
 define f = Character("Luca", color="#347b9e")
-define d = Character("Dottie", color="#2b2b2b")
+define d = Character("Dottie", color="#b3b3b3")
 define c = Character("Coinflip")
 define v = Character("Void Queen")
 define b = Character("Bird", color="#2dbab8")
