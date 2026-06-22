@@ -7,10 +7,10 @@ define c = Character("Coinflip")
 define v = Character("Void Queen")
 define b = Character("Bird", color="#2dbab8")
 define mystery = Character("???")
-define m = Character("Man Who Lost His Name")
+define m = Character("Man Who Lost His Name", color="#B66222")
 define of = Character("Orange Fish", color="a15005")
 define bf = Character("Blue Fish", color="#0508a1")
-define da = Character("Dancer", color="#f296e3")
+define da = Character("Priya", color="#f296e3")
 
 # The game starts
 label start:
@@ -19,7 +19,6 @@ label start:
     $ corpses = 0 #unlocks evil route a la undertale
     $ insanity = 0 #how willing you are to stay
     $ benevolence = 0 #your leadership capability
-    $ confusion = 0 
 
     "It's a warm spring day. You and your friend Luca are walking in the city, heading to get lunch."
     show luca stand
@@ -87,7 +86,7 @@ label start:
             y "I just watched my finger get eaten off by a bird, of course I'm worried!"
             y "Wait, who was that? Where are you? Come out!"
             hide bird
-            $ confusion +=3
+            $ insanity +=3
             jump dottie
 
         label narrator:
@@ -104,9 +103,9 @@ label start:
         show dottie happy at right
         d "She awakens!"
         y "Who...awakens?"
-        show coinflip side at top, left
+        show coinflip side at topleft
         c "I thought she was going to be taller, if I'm being honest."
-        d "Well, beggars can't be choosers. I guess we'll have to make do with what we got."
+        d "Well, beggars can't be choosers. I suppose we ought to make do with what we got."
         menu:
             "Are you looking for someone?":
                 jump whosthis
@@ -114,19 +113,23 @@ label start:
                 jump selfaware
 
     label whosthis:
-        $ confusion += 5
+        $ insanity += 3
         c "Wait, are you not the General?"
-        d "Coinflip! Stop being so rude! I apologize on my friend's behalf."
+        d "Coinflip! Stop being so rude! Don't mind him, he's a bit standoffish. I apologize on my friend's behalf."
         y "This has got to be some sort of dream."
         c "I know, right! Sometimes I think this place is too good to be true. Except for the Void Queen, of course. But it's totally real."
-        d "Stop overwhelming her! Sorry about...her. Anyways, I'm Dottie, and this is Coinflip. What he's TRYING to ask is, are you the General?"
+        d "Will you quit your yapping, you're overwhelming the poor girl! Sorry about...him. It's a pleasure to make your aquaintance. My name is Dottie, and this here is Coinflip. What he's ATTEMPTING to ask is, are you the General?"
         y "I have no idea who that is. But good luck finding them, I guess?"
         c "See, that's where you're mistaken. You ARE the General, obviously."
         y "...how?"
-        d "What I think he's trying to say is that you fit the profile we were given."
-        show coinflip concern 
+        d "Why, I think he's trying to say is that you fit the description we were given."
+        show coinflip concern at topleft
         c "So...do you know anything about stopping world-destroying entities?"
-        show coinflip side 
+        y "Is this the Avengers or something? ARE YOU RECRUITING ME TO THE AVENGERS?"
+        c "Um...sure? Whatever gets you adjusted to the situation, I guess."
+        y "Situation? Are we speaking in code now?"
+        d "You'll learn soon enough."
+        show coinflip side at topleft
         jump meetvoid
         
 
@@ -141,14 +144,14 @@ label start:
         d "I can assure you you're neither."
         y "That's what a hallucination would say."
         y "If you're so real, what's your name, who's the president of the United States right now, and can you pinch me?"
-        d "Dottie, Calvin Coolidge, and why would I do that?"
+        d "Dottie, Calvin Coolidge, and why on Earth would I do that?"
         y "Tangible evidence."
-        d "Fine."
+        d "I suppose I can?"
         y "That was a paper cut. What?"
         d "How is a piece of paper supposed to pinch you? It's the best I could do."
         y "Wait, did you say CALVIN COOLIDGE?"
         show dottie sad
-        d "You asked who the president is right now!"
+        d "Of course I did! Who else would I possibly say, Robert La Follette?"
         y "I think if I think about this any more my brain is going to explode."
         y "Wait, what was that...situation you mentioned earlier? The one I supposedly already know about?"
         c "There's only one situation I COULD be talking about."
@@ -160,10 +163,10 @@ label start:
         hide dottie
         hide coinflip
         mystery "Would you look at that."
-        d "Was that...?"
+        d "It can't be."
         c "No. She doesn't come out like some sort of foot soldier."
         mystery "Oh, but it's such a special occasion! I simply HAD to come see this for myself."
-        d "When I say run, RUN."
+        d "I'm sure you don't feel like flirting with the undertaker in your first hour here. When I say run, RUN."
         y "What's happening? Who is that?"
         c "The situation."
         show voidqueen with dissolve
@@ -172,58 +175,109 @@ label start:
         "The area surrounding the figure looks strange, almost like a faded-out photo."
         hide voidqueen with dissolve
         "And as soon as she appeared, she vanishes."
-        show dottie sad
-        show coinflip angry
+        show dottie sad at left
+        show coinflip angry at topright
         y "You didn't answer my question. Who is that?"
         d "The...Void Queen."
         c "She sucks the color out of everything she touches. Literally."
         y "How did she just disappear like that? Are we safe now?"
-        show coinflip side
+        show coinflip side at topright
         c "Think so!"
         "You see a flash of something black skitter across the clearing where the Void Queen just was."
         y "You saw that, right?"
         d "I think that was one of the Void Queen's beetles. They're deadly if you provoke them. Thankfully--"
-        c ""
+        c "Hey sucker! Looks like your little queen is a COWARD!"
+        d "Coinflip, why can't you just keep your yap shut for once?."
+        "The black creature stops. It stares you down with piercing eyes."
+        mystery "hisssssss..."
+        d "I ain't getting popped tonight. RUN!"
+        "You sprint in the other direction as fast as you can. Dottie follows behind, ______. Coinflip trails behind."
+        c "Don't give me that look. I'll be just fine."
+        d "You may want to look behind you."
+        "The beetle rests on its hind legs, looking ready to pounce. It glares directly at Coinflip."
+        y "It looks like it wants to go after Coinflip. Is he going to be okay?"
+        c "I told you already, I'll be fine!"
+        d "Do you seriously think you can outrun that beetle? There's no way."
+        menu:
+            "Help Coinflip catch up.":
+                jump savecoin
+            "Leave Coinflip, he'll be fine on his own.":
+                jump sacrificecoin
+        
+
 
         
 
     label savecoin:
+        "You slow down for a second, then turn around."
+        d "Are you full of prunes all of a sudden? What are you doing?"
+        hide dottie
+        show coinflip concern at top
+        c "She's right? What are you--why are you--"
+        "You grab Coinflip in your palm. He's the size and weight of a normal quarter, so it's fairly easy to do so."   
+        y "You didn't actually think we'd leave you to outrun that thing yourself, did you?"
+        "You start running again, though the beetle looks less combative now."
+        c "I don't even know what to say. Thank you? I told you I'd be fine though."
+        d "You're nutty but that's going a tad too far."
+        show coinflip side at topleft
+        show dottie happy at right
+        c "So I guess she DOES have General potential! We need to gather the others. We might actually stand a chance now!"
+        d "One of us should go and start gathering the others."
+        c "I'll go do it. I think if I stay here with you, I'd be too much of a burden anyway."
+        y "You're not a burden."
+        d "Actually, he's right that he should do it. Not because he wouldn't be valuable here, but he has a simply unmatched ability to rally people around a cause."
+        c "It's been an honor to be here with you, but it's time for us to part ways."
+        hide coinflip
+        $ coinalive = True
         $ benevolence += 5
+        jump manwholostname
 
     label sacrificecoin:
+        "The beetle pounces...straight onto Coinflip. He falls to the ground with a quiet clink."
+        d "No, no, no, no.....Coinflip..."
         hide dottie
-        show coinflip side
+        show coinflip side at top
         c "It's okay, kid. Sometimes, you gotta make the hard decisions. It's war, what did you expect?"
-        show coinflip death1
+        show coinflip death1 at top
         c "At least I know it's not going to be for nothing. I was honored to be of service."
-        "You feel a tinge of remorse having to send Coinflip to this fate, but like he said, war calls for difficult choices."
-        show coinflip death2
+        "You feel a tinge of remorse leaving Coinflip behind like this, but like he said, war calls for difficult choices."
+        "After all, he said he would be fine. What reason did you have not to trust his judgment?"
+        show coinflip death2 at top
         c "I know you'll do the right thing when the time calls for it."
-        show coinflip rust
+        show coinflip rust at top
         "There's nothing left to do now but keep moving."
         hide coinflip
+        $ coinalive = False
         $ corpses +=1
+        jump manwholostname
 
     label manwholostname:
-        show noname at right
+        show dottie happy at left
+        d "So, in order to determine if you are worthy of the General title, you must first face a series of trials."
+        d "We're going to meet the one who will be able to guide you through them."
+        d "And here he is!"
+        show noname neutral at right with dissolve
         y "Who are you?"
         mystery "That's a good question. She's a smart one, isn't she?"
         mystery "My name is..."
         mystery "Oh yeah! I lost it."
         y "You lost...your name?"
-        show dottie happy at right
+        show dottie happy at left
         d "It's a complicated situation. He's just a tad off his rockers is all.."
-        mystery "BUt since you're human, your little flappy thing doesn't make the same sounds as us. So I think you can call me The Man Who Lost His Name!"
+        show noname happy at right
+        mystery "But since you're human, your little flappy thing doesn't make the same sounds as us. So I think you can call me The Man Who Lost His Name!"
         y "That's a bit of a mouthful, though, don't you think?"
         m "Well, do you have a better idea? And besides, it has a nice ring to it."
         m "Anyways, where are you guys headed?"
-        d "We were on our way to the lake before heading to _____"
+        d "We were on our way to the lake before for the first trial."
         m "No way, that's my favorite part! I'm tagging along now."
         d "If you say so?"
 
     label fish:
-        d "We've arrived at the lake, home to the fish!"
+        d "We've arrived at the lake, home to the fish! As well as the first trial."
         y "Aww, they're kind of cute!"
+        hide dottie
+        show noname neutral
         m "It's customary for a potential leader to be tested by the fish."
         y "Wait, huh?"
         "You look down in the lake."
@@ -247,7 +301,7 @@ label start:
         of "Also, you weren't supposed to tell her that."
         hide bluefish
         hide orangefish
-        show noname
+        show noname happy
         m "You were right! She IS some sort of miracle!"
         jump voidlake
 
@@ -255,14 +309,14 @@ label start:
         bf "You are CORRECT!"
         of "He's lying."
         y "What...?"
-        $ confusion +=5
+        $ insanity +=5
         hide orangefish
         hide bluefish
         show dottie happy at right
-        show noname at left
+        show noname neutral at left
         d "It's okay, you don't have to worry about them. The blue fish tells lies."
-        m "Don't feel bad about getting it wwrong. They get in your head like that."
-        d "That's why any future leader would have advisors! Like us!"
+        m "Don't feel bad about getting it wrong. They get in your head like that."
+        d "That's why any future leader ought to have advisors! Like us!"
         jump voidlake
 
     label voidlake:
@@ -273,7 +327,7 @@ label start:
         of "Hey Blue, do you...see that?"
         bf "I don't see anything at all. Nothing whatsoever!"
         of "Oh, great."
-        of "Hey, Dottie? I think you're going to want to have a look at this."  
+        of "Hey, Dottie? I think the void is here."  
         hide bluefish
         hide orangefish
         "You and the group look to the lake's opposite shore, where the sand has started turning grey."
@@ -281,7 +335,7 @@ label start:
         m "Now's probably a good time to skedaddle before we all become void toast."
         d "But what about the fish?"
         m "What about them?"
-        d "We can't just LEAVE them here!"
+        d "We can't just skip-out on them!"
         m "Uhh, yeah we can. None of this will mean ANYTHING if we don't survive."
         menu:
             "We have to at least try to help them.":
@@ -309,22 +363,23 @@ label start:
 
 
     label what:
-        $confusion += 3
+        $insanity += 3
         hide orangefish
         hide bluefish
-        show noname at left
+        show noname neutral at left
         show dottie happy at right
         m "Maybe she's insane. Maybe she's jealous. Who knows!"
         of "Well, we're grateful nonetheless."
         d "That's our future General!"
+
         jump meetdancer
     
     label outforblood:
         hide orangefish
         hide bluefish
         show dottie happy at right 
-        show noname at left
-        m "Don't worry, you'll get your opportuntiy for revenge soon enough."
+        show noname neutral at left
+        m "Don't worry, you'll get your opportunity for revenge soon enough."
         d "Be patient. And don't encourage her to do something irrational!"
         y "This is only one of what, tens of places she's destroyed? Hundreds? Thousands?"
         y "If we don't stop her, who will?"
@@ -340,7 +395,7 @@ label start:
         hide bluefish
         "The darkness spreads across the surface of the lake. As it approaches the fish, you wonder if this really was the only thing you could do."
         show dottie sad at right
-        show noname at left
+        show noname sad at left
         d "He's right, you know. You won't always be able to save everyone."
         "You're not sure if what Dottie said is true. What if you had tried, at least?"
         "What if, what if, what if. There are so many things that could have been changed."
@@ -355,27 +410,136 @@ label start:
         y "Who's here?"
         "CRACK! The sound of a broken twig rings eerily."
         hide dottie
-        show dancer shocked at left
+        show dancer shocked
         da "Where did you come from? Who are you? Why are you here?"
         d "It's me!"
-        m "And me! And a friend."
-        show dancer side
+        m "And me! And a friend. She's here for your trial."
+        show dancer standing
         da "Oh. Okay..."
         da "No one followed you here, right?"
         m "Of course not!"
-        m "So that was awful timing."
+        d "This next trial tests your intellect and wit."
+        da "I guess that's one way to put it?"
+        da "Basically, I give you riddles and you...answer them? I don't know, it's been a while since we had a potential General."
+        da "First..."
+        da "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?"
+        menu:
+            "A windchime?":
+                jump firstcorrect
+            "An echo?":
+                jump firstincorrect
+
+        label firstcorrect:
+            $benevolence +=1
+            da "That's right. I gave you an easy one, though."
+            jump secondriddle
+        label firstincorrect:
+            $insanity+=1
+            da "No, it's an echo. Are you guys sure this is really the one?"
+            jump secondriddle
+
+    label secondriddle:
+        da "Okay, next. What is the capital of Cape Verde?"
+        y "That's not a riddle?"
+        show dancer side
+        da "JUST ANSWER THE QUESTION!"
+        y "Okay, okay!"
+        menu:
+            "Mindelo?":
+                jump secondincorrect
+            "Praia?":
+                jump secondcorrect
+
+    label secondcorrect:
+        $benevolence+=2
+        show dancer standing
+        da "Correct."
+        da "I'm still not convinced, though. One more for good measure."
+        da "What was the estimated net worth of John D. Rockefeller at the time of his death?"
+        menu:
+            "1.5 billion dollars.":
+                jump thirdcorrect
+            "3 billion dollars.":
+                jump thirdincorrect
+            "That's a stupid question.":
+                jump giveup
+    
+    label secondincorrect:  
+        $insanity+=2
+        show dancer side
+        da "Incorrect. There's no way you're the General. Really, guys?"
+        da "This is such a waste of time. I'm leaving."
+        jump dancervoid
+
+    label thirdcorrect:
+        $benevolence+=1
+        da "Correct. I'm finished here. You all can continue on your adventure, my part here is done."
+        jump dancervoid
+    
+    label thirdincorrect:
+        da "I give up! This is ridiculous! Every single one that comes through here is the exact same."
+        jump dancervoid
+    
+    label giveup:
+        $confrontation+=3
+        da "You realize your fate rests upon you answering my questions, right? I wouldn't do that if I were you."
+        y "You said riddles! These aren't riddles!"
+        da "Cope all you want. Looks to me like you're not worthy."
+        da "I'm out of here. I have no idea what you two see in her."
+        jump dancervoid
+
+    label dancervoid:
+        show dancer side at right
+        "Priya turns around to leave, muttering under her breath."
+        da "I hate this job."
+        show noname terrified at left
+        m "Priya, wait! There's something off over there..."
+        d "How does she keep finding us?"
+        hide noname
+        hide dancer
+        "You see a black flash...just like the one from when you first got here."
+        "The beetle stops in the clearing, glaring at you."
+        "The beetle's surroundings are washed out and grey. The darkness spreads like an inkstain."
+        d "Priya, get over here!"
+        show dancer shocked
+        "You turn to look at the dancer, who stands frozen."
+        menu:
+            "Grab her and pull her away from the beetle.":
+                jump savedancer
+            "Run and trust she'll catch up.":
+                jump sacrificedancer
 
     label savedancer:
+        $benevolence +=5
+        y "Come on!"
+        "You grab Priya by the arm, dragging her to the rest of the group."
+        da "You...saved me?"
+        y "Yeah, of course. Why would we leave you there?"
+        da "Thank you. I don't know why I froze up. I'm not even sure if I would have moved if you hadn't done that."
+        y "It's nothing, don't worry about it."
+        da "I guess you aren't as hopeless as I thought."
+        jump crossroads
 
     label sacrificedancer:
+        "You run with Dottie and the Man Who Lost His Name."
+        d "Priya, come on!"
+        "You turn around for a split second. Priya is still standing, seemingly unable to move."
+        m "You need to run! The darkness is RIGHT THERE!"
+        da "I..."
         show dancer shocked
+        "The darkness on the ground touches Priya's feet. She watches in horror as it spreads across her."
         show dancer death1
+        d "No..."
         show dancer death2
+        "Her bright colors are gone, replaced by static. It almost looks like her silhouette is melting."
         show dancer dust
+        "Soon enough, there's nothing left of her."
         hide dancer
         show jhumka
+        "All that's left of her is a broken jhumka"
         $ corpses +=1
         hide jhumka
+        jump crossroads
 
     label crossroads:
 
@@ -398,7 +562,7 @@ label start:
 
     label chooserank:
         m "Well, clearly we don't have much time left."
-        m "Our army needs its leader. Someoe who isn't afraid to take charge and fight."
+        m "Our army needs its leader. Someone who isn't afraid to take charge and fight."
         if corpses>2:
             m "And considering that my friends are dying left and right, I guess you're the only one left."
         else:
@@ -460,7 +624,7 @@ label start:
     label deathisamercy:
         mystery "Oh, so it's you..."
         mystery "Sigh, I should have seen this coming. Are you going to kill me too?"
-        "The VOID QUEEN exists when despair is ihgh. Did you know that with every death you caused, that despair became stronger?"
+        "The VOID QUEEN exists when despair is high. Did you know that with every death you caused, that despair became stronger?"
         mystery "A couple days ago this clearing was free of any trace of the VOID but recently there’s been an uptick in despair which has led to the scene you see now."
         mystery "If you had arrived earlier you could’ve taken the path through the clearing and reached the Nexus which would’ve taken you home."
         mystery "Such a shame the Nexus was overtaken by the VOID. Seems you have no path home!"
