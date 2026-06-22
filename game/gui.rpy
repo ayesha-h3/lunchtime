@@ -96,6 +96,12 @@ define gui.game_menu_background = "gui/game_menu.png"
 ## These variables control how dialogue is displayed on the screen one line at a
 ## time.
 
+image gui textbox = Transform(
+    "gui/textbox.png",
+    xsize=100%,
+    ysize=278
+)
+
 ## The height of the textbox containing dialogue.
 define gui.textbox_height = 278
 
