@@ -217,7 +217,8 @@ label start:
         d "I think that was one of the Void Queen's beetles. They're deadly if you provoke them. Thankfully--"
         c "Hey sucker! Looks like your little queen is a COWARD!"
         d "Coinflip, why can't you just keep your yap shut for once?."
-        show beetle with hpunch
+        show beetle with hpunch:
+            xalign 1.0
         "The black creature stops. It stares you down with piercing eyes."
         mystery "hisssssss..."
         hide beetle
@@ -248,7 +249,9 @@ label start:
         "You slow down for a second, then turn around."
         d "Are you full of prunes all of a sudden? What are you doing?"
         hide dottie
-        show hand
+        hide coinflip
+        show hand at center:
+            zoom 1.4
         show coinflip concern at truecenter
         c "She's right? What are you--why are you--"
         "You grab Coinflip in your palm. He's the size and weight of a normal quarter, so it's fairly easy to do so."   
@@ -259,8 +262,11 @@ label start:
         d "You're nutty, but even that's going a tad too far."
         "Once you reach the edge of the forest, you let Coinflip go."
         hide hand
-        show coinflip side
+        show coinflip side:
+            xalign 0.2
+            yalign 0.6
         show dottie happy at right
+        play music opening fadein 1.0 fadeout 1.0
         c "So I guess she DOES have General potential! We need to gather the others. We might actually stand a chance now!"
         d "One of us should go and start gathering the others."
         c "I'll go do it. I think if I stay here with you, I'd be too much of a burden anyway."
@@ -298,7 +304,8 @@ label start:
         play music water fadein 1.0 fadeout 1.0
         scene shore at truecenter:
             zoom 1.8
-        show dottie happy at left
+        "Some time later..."
+        show dottie happy at left with moveinleft
         d "So, in order to determine if you are worthy of the General title, you must first face a series of trials."
         d "We're going to meet the one who will be able to guide you through them."
         d "And here he is!"
@@ -315,12 +322,13 @@ label start:
         y "That's a bit of a mouthful, though, don't you think?"
         m "Well, do you have a better idea? And besides, it has a nice ring to it."
         m "Anyways, where are you guys headed?"
-        d "We were on our way to the other end of the lake for the first trial."
-        m "No way, that's my favorite part! I'm tagging along now."
+        d "We're actually here for the first trial!"
+        m "No way, the first one is my favorite part! I'm tagging along now."
         d "If you say so?"
 
     label fish:
         d "This lake is home to the guardian fish! As well as the first trial."
+        "You peer down in the lake to see fish swimming around."
         y "Aww, they're kind of cute!"
         hide dottie
         show noname neutral
@@ -430,6 +438,7 @@ label start:
         m "Maybe she's insane. Maybe she's jealous. Who knows!"
         of "Well, we're grateful nonetheless."
         d "That's our future General!"
+        m "Not so fast, Dottie. She's got to pass the next trial first."
 
         jump meetdancer
     
@@ -444,25 +453,33 @@ label start:
         d "Be patient. And don't encourage her to do something irrational!"
         y "This is only one of what, tens of places she's destroyed? Hundreds? Thousands?"
         y "If we don't stop her, who will?"
+        m "That's why we need you, you know."
+        m "Anyways, onto the next trial!"
         $confrontation +=3
         jump meetdancer
 
     label sacrificefish:
         m "Let's keep going. Sorry guys, it's nothing personal."
+        hide dottie
+        hide noname
+        scene lake
+        show orangefish
+        show bluefish
         of "I've always hoped that I'd be able to go out with a bang. ENSURE OUR DEATHS WERE NOT IN VAIN, YOUNG WARRIOR!"
         bf "You were always the melodramatic one."
         of "Sure, sure."
         hide orangefish
         hide bluefish
-        "The darkness spreads across the surface of the lake. As it approaches the fish, you wonder if this really was the only thing you could do."
         scene shore at truecenter:
             zoom 1.8
+        "The darkness spreads across the surface of the lake. As it approaches the fish, you wonder if this really was the only thing you could do."
         show dottie sad at right
         show noname sad at left
         d "He's right, you know. You won't always be able to save everyone."
         "You're not sure if what Dottie said is true. What if you had tried, at least?"
         "What if, what if, what if. There are so many things that could have been changed."
         m "I can see you dwelling on it. Now's not the time for sulking, it's time for JUSTICE!"
+        m "And the second trial. To the cave we go!"
         $corpses+=1
         jump meetdancer
 
@@ -475,7 +492,7 @@ label start:
         y "Who's here?"
         "CRACK! A crystal's vibrations ring eerily."
         hide dottie
-        show dancer shocked
+        show dancer shocked with hpunch
         da "Where did you come from? Who are you? Why are you here?"
         d "It's me!"
         m "And me! And a friend. She's here for your trial."
@@ -563,9 +580,11 @@ label start:
         hide noname
         hide dancer
         "You see a black flash...just like the one from when you first got here."
+        show beetle with hpunch
         "The beetle stops in the clearing, glaring at you."
         "The beetle's surroundings are washed out and grey. The darkness spreads like an inkstain."
         d "Priya, get over here!"
+        hide beetle
         show dancer shocked
         "You turn to look at the dancer, who stands frozen."
         menu:
@@ -583,6 +602,7 @@ label start:
         da "Thank you. I don't know why I froze up. I'm not even sure if I would have moved if you hadn't done that."
         y "It's nothing, don't worry about it."
         da "I guess you aren't as hopeless as I thought."
+        m "We better hope so. We need to go, now."
         $danceralive = True
         jump crossroads
 
@@ -594,11 +614,11 @@ label start:
         da "I..."
         show dancer shocked
         "The darkness on the ground touches Priya's feet. She watches in horror as it spreads across her."
-        show dancer death1
+        show dancer death1 with dissolve
         d "No..."
-        show dancer death2
+        show dancer death2 with dissolve
         "Her bright colors are gone, replaced by static. It almost looks like her silhouette is melting."
-        show dancer dust
+        show dancer dust with dissolve
         "Soon enough, there's nothing left of her."
         hide dancer
         show jhumka
@@ -606,6 +626,7 @@ label start:
         $ corpses +=1
         $danceralive = False
         hide jhumka
+        m "There's no time to dwell on it. We need to go. Now."
         jump crossroads
 
     label crossroads:
@@ -629,6 +650,9 @@ label start:
         m "And also run."
         d "Whatever do you mean?"
         m "ANOTHER beetle! Behind you!"
+        hide dottie
+        hide noname
+        show beetle with hpunch
         menu:
             "Run as fast as you can.":
                 jump sacrificedottie
@@ -652,6 +676,7 @@ label start:
 
 
     label savedottie:
+        hide beetle
         if confrontation>5:
             jump success
         else:
@@ -681,6 +706,7 @@ label start:
         $confronation+=5
 
     label sacrificedottie:
+        hide beetle
         "You and the Man Who Lost His Name scramble away as fast as you can. Dottie tries to catch up..."
         hide noname
         "But the darkness reaches her faster."
@@ -721,6 +747,7 @@ label start:
 
     label general:
         $benevolence+=5
+        show noname happy
         m "We're glad to have you."
         m "And it seems you've gained some loyal followers throughout your trials."
         hide noname
@@ -729,6 +756,8 @@ label start:
                 yalign 0.5
                 xalign 0.5
             c "It'll be an honor to fight by your side."
+            y "You're back!"
+            c "Of course I am! Miss me, General?"
             hide coinflip
         if dottiealive:
             show dottie happy
