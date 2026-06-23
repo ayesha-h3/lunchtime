@@ -2,14 +2,14 @@
 # establishing our cast of characters !
 define y = Character("You", color="#d28ef1")
 define f = Character("Luca", color="#347b9e")
-define d = Character("Dottie", color="#2b2b2b")
+define d = Character("Dottie", color="#b3b3b3")
 define c = Character("Coinflip")
 define v = Character("Void Queen")
 define b = Character("Bird", color="#2dbab8")
 define mystery = Character("???")
 define m = Character("Man Who Lost His Name", color="#B66222")
 define of = Character("Orange Fish", color="a15005")
-define bf = Character("Blue Fish", color="#0508a1")
+define bf = Character("Blue Fish", color="#7dcfff")
 define da = Character("Priya", color="#f296e3")
 
 

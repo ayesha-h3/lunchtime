@@ -60,10 +60,10 @@ define gui.interface_text_color = '#ffffff'
 define gui.text_font = "AmericanTypewriter-Semibold-04.ttf"
 
 ## The font used for character names.
-define gui.name_text_font = "DejaVuSans.ttf"
+define gui.name_text_font = "Baskerville-SemiBold-05.ttf"
 
 ## The font used for out-of-game text.
-define gui.interface_text_font = "DejaVuSans.ttf"
+define gui.interface_text_font = "AmericanTypewriter-Semibold-04.ttf"
 
 ## The size of normal dialogue text.
 define gui.text_size = 33
@@ -95,6 +95,12 @@ define gui.game_menu_background = "gui/game_menu.png"
 ##
 ## These variables control how dialogue is displayed on the screen one line at a
 ## time.
+
+image gui textbox = Transform(
+    "gui/textbox.png",
+    xsize=1920,
+    ysize=278
+)
 
 ## The height of the textbox containing dialogue.
 define gui.textbox_height = 278
