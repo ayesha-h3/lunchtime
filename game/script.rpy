@@ -2,13 +2,13 @@
 # establishing our cast of characters !
 define y = Character("You", color="#d28ef1")
 define f = Character("Luca", color="#347b9e")
-define d = Character("Dottie", color="#2b2b2b")
-define c = Character("Coinflip")
-define v = Character("Void Queen")
+define d = Character("Dottie", color="#b7b7b7")
+define c = Character("Coinflip", color="#E1DAFB")
+define v = Character("Void Queen", color="#FFFFFF")
 define b = Character("Bird", color="#2dbab8")
 define mystery = Character("???")
 define m = Character("Man Who Lost His Name", color="#B66222")
-define of = Character("Orange Fish", color="a15005")
+define of = Character("Orange Fish", color="#fd9432")
 define bf = Character("Blue Fish", color="#0508a1")
 define da = Character("Priya", color="#f296e3")
 
@@ -22,7 +22,7 @@ label start:
     $ insanity = 0 #how willing you are to stay
     $ benevolence = 0 #your leadership capability
 
-    scene intersection
+    scene intersection at truecenter
     show luca stand
     "It's a warm spring day. You and your friend Luca are walking in the city, heading to get lunch."
     f "So, where do we want to head for lunch? I was thinking of this sushi place that I've been wanting to try out."
@@ -48,7 +48,7 @@ label start:
         show truck with zoomin
         "THUD!"
         hide truck
-        hide intersection
+        scene black
         "Everything goes black."
         $ insanity+=1
         jump forest
@@ -65,11 +65,12 @@ label start:
         hide luca
         y "I'm TRYING!"
         "You try to jump away but it's too late. The crack widens to a gaping hole...pulling you into the newly opened abyss."
-        hide intersection
+        scene black
         jump forest
     
 
     label forest:
+        play music opening
         "You open your eyes."
         scene treesup
         y "...huh?"
@@ -106,12 +107,12 @@ label start:
             "Uhhh...sure?"
             y "Is this some sort of internal monologue? Am I going insane?"
             "No and no. It's best if you don't think about it too hard."
-            $ insanity +=5
+            $ insanity +=3
             jump dottie
 
     label dottie:
         "You get up, trying to adjust to your new surroundings."
-        scene woods with fade
+        scene woods at truecenter with fade
         show dottie happy at right with moveinright
         d "She awakens!"
         y "Who...awakens?"
@@ -178,13 +179,14 @@ label start:
 
 
     label meetvoid:
+        play music battle fadein 1.0 fadeout 1.0
         "You hear a rustling behind you. You turn around to find the source of the noise, but it looks like nothing is there."
         hide dottie
         hide coinflip
         mystery "Would you look at that."
         d "It can't be."
         c "No. She doesn't come out like some sort of foot soldier."
-        scene bg greyforest
+        scene greyforest at truecenter
         mystery "Oh, but it's such a special occasion! I simply HAD to come see this for myself."
         d "I'm sure you don't feel like flirting with the undertaker in your first hour here. When I say run, RUN."
         y "What's happening? Who is that?"
@@ -195,7 +197,7 @@ label start:
         "The area surrounding the figure looks strange, almost like a faded-out photo."
         hide voidqueen with dissolve
         "And as soon as she appeared, she vanishes."
-        scene bg woods
+        scene woods at truecenter
         show dottie sad at left
         show coinflip angry:
             xalign 1.0
@@ -208,13 +210,13 @@ label start:
             xalign 1.0
             yalign 0.6
         c "Think so!"
+        hide dottie
+        hide coinflip
         "You see a flash of something black skitter across the clearing where the Void Queen just was."
         y "You saw that, right?"
         d "I think that was one of the Void Queen's beetles. They're deadly if you provoke them. Thankfully--"
         c "Hey sucker! Looks like your little queen is a COWARD!"
         d "Coinflip, why can't you just keep your yap shut for once?."
-        hide dottie
-        hide coinflip
         show beetle with hpunch
         "The black creature stops. It stares you down with piercing eyes."
         mystery "hisssssss..."
@@ -246,6 +248,7 @@ label start:
         "You slow down for a second, then turn around."
         d "Are you full of prunes all of a sudden? What are you doing?"
         hide dottie
+        show hand
         show coinflip concern at truecenter
         c "She's right? What are you--why are you--"
         "You grab Coinflip in your palm. He's the size and weight of a normal quarter, so it's fairly easy to do so."   
@@ -255,9 +258,8 @@ label start:
         "Dottie scoffs behind you."
         d "You're nutty, but even that's going a tad too far."
         "Once you reach the edge of the forest, you let Coinflip go."
-        show coinflip side:
-            xalign 0.3
-            yalign 0.6
+        hide hand
+        show coinflip side
         show dottie happy at right
         c "So I guess she DOES have General potential! We need to gather the others. We might actually stand a chance now!"
         d "One of us should go and start gathering the others."
@@ -267,7 +269,7 @@ label start:
         c "It's been an honor to be here with you, but it's time for us to part ways."
         y "Thanks for everything!"
         hide coinflip
-        "Now, we'll head for _____."
+        "Now, we just need to head towards the lake. I have a friend we'll find there.."
         $ coinalive = True
         $ benevolence += 5
         jump manwholostname
@@ -276,7 +278,7 @@ label start:
         "The beetle pounces...straight onto Coinflip. He falls to the ground with a quiet clink."
         d "No, no, no, no.....Coinflip..."
         hide dottie
-        show coinflip side at top
+        show coinflip side at truecenter
         c "It's okay, kid. Sometimes, you gotta make the hard decisions. It's war, what did you expect?"
         show coinflip death1 at top
         c "At least I know it's not going to be for nothing. I was honored to be of service."
@@ -289,10 +291,13 @@ label start:
         hide coinflip
         $ coinalive = False
         $ corpses +=1
+        scene black with fade
         jump manwholostname
 
     label manwholostname:
-        scene bg shore
+        play music water fadein 1.0 fadeout 1.0
+        scene shore at truecenter:
+            zoom 1.8
         show dottie happy at left
         d "So, in order to determine if you are worthy of the General title, you must first face a series of trials."
         d "We're going to meet the one who will be able to guide you through them."
@@ -324,7 +329,7 @@ label start:
         "You look down in the lake."
         hide dottie
         hide noname
-        scene bg lake
+        scene lake
         show bluefish
         show orangefish
         bf "One of us tells the truth..."
@@ -343,7 +348,8 @@ label start:
         of "Also, you weren't supposed to tell her that."
         hide bluefish
         hide orangefish
-        scene bg shore
+        scene shore at truecenter:
+            zoom 1.8
         show noname happy
         m "You were right! She IS some sort of miracle!"
         jump voidlake
@@ -352,10 +358,11 @@ label start:
         bf "You are CORRECT!"
         of "He's lying."
         y "What...?"
-        $ insanity +=5
+        $ insanity +=3
         hide orangefish
         hide bluefish
-        scene bg shore
+        scene shore at truecenter:
+            zoom 1.8
         show dottie happy at right
         show noname neutral at left
         d "It's okay, you don't have to worry about them. The blue fish tells lies."
@@ -366,7 +373,7 @@ label start:
     label voidlake:
         hide dottie
         hide noname
-        scene bg lake
+        scene lake
         show orangefish
         show bluefish
         of "Hey Blue, do you...see that?"
@@ -375,7 +382,10 @@ label start:
         of "Hey, Dottie? I think the void is here."  
         hide bluefish
         hide orangefish
-        scene bg shore
+        scene shore at truecenter:
+            zoom 1.8
+        show dottie sad at right
+        show noname sad at left
         "You and the group look to the lake's opposite shore, where the sand has started turning grey."
         d "How is it already here? I didn't think it would catch up to us this fast."
         m "Now's probably a good time to skedaddle before we all become void toast."
@@ -390,14 +400,14 @@ label start:
                 jump sacrificefish
 
     label savefish:
-        $benevolence +=7
+        $benevolence +=5
         "You scoop the orange fish up in your arms."
         m "Well, I guess we're doing this now."
         "The Man Who Lost His Name follows, grabbing the blue fish."
         d "We can't keep them out of the water for too long. Over there should be a small pond where they can take shelter."
         hide dottie
         hide noname
-        scene bg lake
+        scene lake
         show orangefish
         show bluefish
         of "Thank you! Thank you thank you thank you!" 
@@ -413,7 +423,8 @@ label start:
         $insanity += 3
         hide orangefish
         hide bluefish
-        scene bg shore
+        scene shore at truecenter:
+            zoom 1.8
         show noname neutral at left
         show dottie happy at right
         m "Maybe she's insane. Maybe she's jealous. Who knows!"
@@ -425,7 +436,8 @@ label start:
     label outforblood:
         hide orangefish
         hide bluefish
-        scene bg shore
+        scene shore at truecenter:
+            zoom 1.8
         show dottie happy at right 
         show noname neutral at left
         m "Don't worry, you'll get your opportunity for revenge soon enough."
@@ -443,7 +455,8 @@ label start:
         hide orangefish
         hide bluefish
         "The darkness spreads across the surface of the lake. As it approaches the fish, you wonder if this really was the only thing you could do."
-        scene bg shore
+        scene shore at truecenter:
+            zoom 1.8
         show dottie sad at right
         show noname sad at left
         d "He's right, you know. You won't always be able to save everyone."
@@ -455,8 +468,9 @@ label start:
 
 
     label meetdancer:
+        play music crystalcave fadein 1.0 fadeout 1.0
         hide noname
-        scene bg cave
+        scene cave at truecenter
         d "Okay, you need to be REALLY careful here. We don't want to scare her."
         y "Who's here?"
         "CRACK! A crystal's vibrations ring eerily."
@@ -476,9 +490,9 @@ label start:
         da "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?"
         menu:
             "A windchime?":
-                jump firstcorrect
-            "An echo?":
                 jump firstincorrect
+            "An echo?":
+                jump firstcorrect
 
         label firstcorrect:
             $benevolence +=1
@@ -543,7 +557,7 @@ label start:
         show dancer side at right
         "Priya turns around to leave, muttering under her breath."
         da "I hate this job."
-        show noname terrified at left
+        show noname sad at left
         m "Priya, wait! There's something off over there..."
         d "How does she keep finding us?"
         hide noname
@@ -595,7 +609,11 @@ label start:
         jump crossroads
 
     label crossroads:
-        scene bg storm
+        play music battle fadein 1.0 fadeout 1.0
+        scene storm at truecenter:
+            zoom 1.8
+        show dottie sad at left
+        show noname sad at right
         d "So, ideally we would have three more trials, but clearly we don't have the time for that."
         m "The void keeps coming after us."
         menu:
@@ -621,6 +639,10 @@ label start:
         d "I said we should just make you the general already, considering that you're the only remotely qualified one."
         y "ME? Qualified?"
         m "Well, you did okay enough in the trials we DID make it around to."
+        d "We need to meet up with the others if we want to stand any chance against that scoundrel, the Void Queen."
+        m "I think we should head there now...and also run..."
+        d "I said we don't have time, but does the situation really necessitate running?"
+        m "YES! THERE'S ANOTHER BEETLE BEHIND YOU, AND THE VOID IS COMING TOWARDS US!"
         menu:
             "Run as fast as you can.":
                 jump sacrificedottie
@@ -630,24 +652,58 @@ label start:
 
 
     label savedottie:
+        if confrontation>5:
+            jump success
+        else:
+            show noname terrified at right
+            m "Are you insane?"
+            "You try to lunge at the beetle, but it doesn't appear fazed."
+            m "You don't stand a chance against that thing!"
+            "The Man Who Lost His Name pulls you away."
+            jump sacrificedottie
+
+    label success:
+        m "When I said run, I assumed you weren't dumb enough to think I meant run TOWARDS it!"
+        hide dottie
+        hide noname
+        show beetle
+        "You lunge at the beetle, wielding nothing but your fists."
+        d "What are you doing? NO!"
+        "You land a punch squarely between the beetle's eyes. It falls flat on the ground."
+        hide beetle
+        show noname happy
+        m "I think you just dispelled any doubts I had about your ability."
+        hide noname
+        show dottie happy
+        d "You truly are a hero!"
+        $dottiealive = True
+        $benevolence+=5
+        $confronation+=5
 
     label sacrificedottie:
-        show dottie sad
+        "You and the Man Who Lost His Name scramble away as fast as you can. Dottie tries to catch up..."
+        hide noname
+        "But the darkness reaches her faster."
+        show dottie sad at center
         d "What's...happening?"
-        show dottie death1
+        show dottie death1 at center
         d "It was nice knowing you..."
-        show dottie death2
+        show dottie death2 at center
         y "I'm sorry, Dottie."
-        show dottie death3
+        show dottie death3 at center
         d "Goodbye."
-        show dottie inkstained
+        show dottie inkstained at center
         "All that remains where Dottie once stood is an inkstained leaflet."
         "You pick it up, a reminder of what you lost."
         hide dottie
+        $dottiealive= False
         $ corpses +=1
 
     label chooserank:
+        show noname sad at center
         m "Well, we're running out of time."
+        m "I think our best course of action will be to lure the Void Queen out of her palace. All we have to do is announce our challenge, and her fragile ego will have to accept."
+        m "Long story short, there's this gemstone called the Nexus. It's the core of our world, almost like its life force. If she gets her hands on it, it's over for all of us."
         m "Our army needs its leader. Someone who isn't afraid to take charge and fight."
         if corpses>3:
             m "And considering that my friends are all dead, I guess you're the only one left."
@@ -664,37 +720,230 @@ label start:
                 jump evil
 
     label general:
+        $benevolence+=5
+        m "We're glad to have you."
+        m "And it seems you've gained some loyal followers throughout your trials."
+        hide noname
+        if coinalive:
+            show coinflip side:
+                yalign 0.5
+                xalign 0.5
+            c "It'll be an honor to fight by your side."
+            hide coinflip
+        if dottiealive:
+            show dottie happy
+            d "I think you'll be the one to finally lead us to victory."
+            hide dottie
+        if danceralive:
+            show dancer side
+            da "If he trusts you, I guess you can't be all that bad."
+            hide dancer
+        show noname neutral
+        m "I want you to take this."
+        "He hands you a dagger, encrusted with jewels. It's the perfect size to fit in your pocket."
+        m "We believe in you. All of us."
+        jump battle
+        
+        
+
         
     label soldier:
+        m "I don't think you understand...the gravity of the situation."
+        m "You don't get to choose when you're ready. We need you, now."
+        m "But just in case..."
+        m "Take this."
+        "He hands you a simple yet sharp dagger. It's the perfect size to fit in your pocket."
+        m "Even if you don't believe in yourself, just know that we do. You're our best hope."
+        jump battle
 
     label evil:
         m "...what do you mean?"
-    label confrontation:
+        y "I mean I don't see the point in fighting her."
+        y "And I don't see why it should be me. After all, I'm the reason so many have died."
+        show noname sad 
+        m "No..."
+        y "VOID QUEEN!"
+        y "I surrender."
+        jump voidDominion
+
+
 
     label battle:
+        hide noname
+        y "VOID QUEEN!"
+        menu:
+            "I challenge you to a fight." if confrontation>8:
+                jump fight
+            "We need to talk." if benevolence>30:
+                jump diplomacy
+            "I challenge you to a test of wits." if insanity>15:
+                jump mindgames
+            "Come out. I'm not here to fight." if corpses>3:
+                jump surrender
+            "Coward." if insanity>17:
+                jump slimeout
+            "It doesn't have to be like this." if benevolence>32:
+                jump friendship
+            "We have a score to settle.":
+                jump fight
 
-    menu: #this is for testing endings, this will NOT be in the final version!!!
-        "good things happen to good people":
-            jump goodthingsgoodpeople
-        "death is a mercy":
-            jump deathisamercy
-        "void dominion":
+
+    label fight:
+        "You hear a whistling in the wind."
+        "Suddenly, you're somewhere new."
+        scene cathedral at truecenter with fade:
+            zoom 1.8
+        show voidqueen with dissolve
+        v "So, I see you want to...fight."
+        y "You underestimate us, you know. You really think you can get away with this, destroying the very life force of worlds?"
+        v "I've done it before, and I'll do it again."
+        y "Not this time."
+        "You reach for the dagger that the Man Who Lost His Name gave you."
+        y "I'll make sure of it."
+        hide voidqueen with dissolve
+        "The moment the dagger touches the Void Queen, she fades into shadows."
+        "The wind picks up again, and you find yourself somewhere..."
+        "Familiar."
+        jump goodthingsgoodpeople
+
+
+
+    label diplomacy:
+        "You feel the wind pick up speed around you."
+        "Suddenly, you're in a strange palace."
+        scene window at truecenter:
+            zoom 1.8
+        show voidqueen with dissolve
+        v "...Talk, you say?"
+        y "Yes. I don't want to fight. Enough lives have been put at risk."
+        v "And why do you feel that you need to take this...holy mission of sorts upon yourself?"
+        y "Isn't it obvious?"
+        y "You're destroying worlds, and, well, my friends trust me to stop you."
+        y "And I wouldn't let them down, now, would I?"
+        v "Your bravery is...commendable."
+        v "But foolish nonetheless."
+        "It seems she's left you with no choice."
+        "You reach in your pocket for the dagger."
+        y "One way or another, you'll have to face justice."
+        "The moment the dagger touches the Void Queen, she dissolves into shadows."
+        "The wind returns, swirling around the room."
+        y "But I'm inside? Where is the wind coming from?"
+        "Don't think too hard about it!"
+        jump goodthingsgoodpeople
+
+
+    label mindgames:
+        "You hear a crack, and suddenly you're in a strange cathedral."
+        scene cathedral at truecenter with fade:
+            zoom 1.8
+        show voidqueen with dissolve
+        v "Me? A test of wits?"
+        v "I knew they were desperate, but I didn't realize they were so badly in need of a leader that they'd pick someone like..."
+        v "Like you."
+        y "But you didn't even hear my idea!"
+        v "How far I've fallen...I have to deal with these delinquents now."
+        if coinalive:
+            jump flipcoin
+        else:
+            jump guessthenumber
+
+    label flipcoin:
+        y "Let's flip a coin."
+        "Little does the Void Queen know, the odds are stacked against her."
+        hide voidqueen
+        hide coinflip
+        show hand
+        show coinflip side at truecenter
+        c "Heh..."
+        y "I call heads! If I win, I get to walk free. If it's tails, you can kill me!"
+        v "You imbecile. What kind of challenge is this?"
+        y "3...2...1..."
+        y "It's heads!"
+        hide hand
+        hide coinflip
+        v "I do have to commend your...bravery? Confidence? Brashness?"
+        jump offer
+
+    label guessthenumber:
+        y "I'll...pick a number between one and ten. If you guess right, you can kill me!"
+        v "You imbecile. This isn't a challenge! This is pure luck!"
+        y "So you don't think you can guess right? You're scared of a number game?"
+        v "I didn't say that!"
+        y "Okay, I've got my number! What's your guess?"
+        v "...Seven."
+        y "Wrong! It was six."
+        y "Heh...six seven..."
+        v "You FOOL! You dare mess with me?"
+        "The Void Queen lunges at you. You reach for the dagger in your pocket the Man Who Lost His Name gave you."
+        jump socliche
+
+
+    label slimeout:
+        v "WHO DARES CALL ME A COWARD?"
+        "A vortex of wind swirls around you. Suddenly, you're in a strange, dark hall."
+        scene cathedral at truecenter with fade:
+            zoom 1.8
+        show voidqueen with dissolve
+        y "Me! Cause that's what you are! You don't come and fight us, you just send your little beetles! A real malevolent force would come and fight us herself!"
+        v "How dare you insult me!"
+        y "Also, what is that HAIR? You look like you're going on 500!"
+        v "I'm 347 years old, thank you very much!"
+        y "You really need to get yourself a new stylist, because whoever it is right now is doing you dirty."
+        v "I'll have you know that I HANDPICK all my advisors and handmaidens!"
+        y "And you get ragebaited oh so easily."
+        "The Void Queen looks like she's ready to fight you, when something strange happens."
+        scene window at truecenter with pixelate:
+            zoom 1.8
+        y "How did we get here?"
+        scene cathedral at truecenter with pixelate:
+            zoom 1.8
+        y "...Huh?"
+        jump socliche
+
+    label friendship:
+        "A massive gust of wind lifts you off your feet. When you land back on the ground, though, you're somewhere new."
+        scene window at truecenter with fade:
+            zoom 1.8
+        v "What could you possibly mean?"
+        y "Well...clearly you're looking for some sort of fulfillment in doing this."
+        v "Doing what?"
+        y "You know, the whole destroying worlds by plunging them into darkness thing. What, is there some sort of tragic backstory behind this?"
+        v "No one's ever...asked me that..."
+        v "It all started when I was just a girl."
+        v "My best friend...she moved away."
+        v "I was never the same after that. She was the only one who I felt accepted me as a real friend."
+        v "After that, I decided that if I couldn't be happy, no one would."
+        y "So that's dumb. And SO cliche."
+        y "I'm sure if you opened yourself up to others a little bit people would be happy to be your friend. You know, you're a little intimidating with how little you talk."
+        v "Yeah, I guess that's a fair point."
+        v "Wow...t-t-t-"
+        hide voidqueen with pixelate
+        show voidqueen with pixelate
+        hide voidqueen with pixelate
+        y "What's happening?"
+        jump socliche
+
+
+    label surrender:
+        if confrontation>8:
             jump voidDominion
-
-
-
-
+        else:
+            jump deathisamercy
 
 
     label goodthingsgoodpeople:
+        scene woods at truecenter with fade
         mystery "Seems to me that it's your lucky day!"
         y "What?"
-        mystery "Rejoice! It appears you have found your one ticket home."
-        mystery "You really did help us out."
+        show noname happy
+        "The Man Who Lost his Name appears."
+        m "Rejoice! It appears you have found your one ticket home."
+        m "You really did help us out."
         "The VOID QUEEN exists when despair is high. Did you know that for every life you saved, despair was released from their hearts?"
-        mystery "Everyone had given up hope. They've been waiting to die for so long, no one expected their spirits to be renewed. I think..."
-        mystery "I think you may have helped push back the Void Queen for good!"
-        mystery "Head down that path. You'll find the Nexus there, which will grant you your path home!"
+        m "Everyone had given up hope. They've been waiting to die for so long, no one expected their spirits to be renewed. I think..."
+        m "I think you may have destroyed the Void Queen for good!"
+        m "Head down that path. You'll find the Nexus there, which will grant you your path home!"
+        hide noname
         "You make your way to the path revealed by the Man Who Lost his Name."
         "The trees around you thin until you reach a stone temple that has fallen into disrepair."
         y "What is this place...?"
@@ -705,23 +954,29 @@ label start:
         y "Hey!"
         "What? You know it's true."
         "Seeing as you can still hear that disembodied voice--Hey!"
+        "You'll never quite know if this was real, or just a dream."
+        "Your END is return!"
         jump theend
 
     label deathisamercy:
+        scene cathedral at truecenter with fade:
+            zoom 1.8
         mystery "Oh, so it's you..."
-        mystery "Sigh, I should have seen this coming. Are you going to kill me too?"
+        "The Man Who Lost His Name appears."
+        show noname angry
+        m "Sigh, I should have seen this coming. Are you going to kill me too?"
         "The VOID QUEEN exists when despair is high. Did you know that with every death you caused, that despair became stronger?"
-        mystery "A couple days ago this clearing was free of any trace of the VOID but recently there’s been an uptick in despair which has led to the scene you see now."
-        mystery "If you had arrived earlier you could’ve taken the path through the clearing and reached the Nexus which would’ve taken you home."
-        mystery "Such a shame the Nexus was overtaken by the VOID. Seems you have no path home!"
-        mystery "I’ve wondered why you are so cruel."
-        mystery "Perhaps to you we are nothing worth mourning for." 
-        mystery "An object being lost or a memory being forgotten is nothing of importance to you is that right? Something no one remembers exist isn’t worth crying about."
-        mystery "I’ll tell you a secret."
-        mystery "I lied about not knowing what happens to humans who fall into the VOID."
-        mystery "Humans are erased from existence."
-        mystery "The parents that raised you, the friends up adored, the lovers you tangle with, not a single one will know you are missing. Not a single one knows you existed at all."
-        mystery "You will die here with no one to mourn you. Not in this world or your own." 
+        m "A couple days ago this clearing was free of any trace of the VOID but recently there’s been an uptick in despair which has led to the scene you see now."
+        m "If you had arrived earlier you could’ve taken the path through the clearing and reached the Nexus which would’ve taken you home."
+        m "Such a shame the Nexus was overtaken by the VOID. Seems you have no path home!"
+        m "I’ve wondered why you are so cruel."
+        m "Perhaps to you we are nothing worth mourning for." 
+        m "An object being lost or a memory being forgotten is nothing of importance to you is that right? Something no one remembers exist isn’t worth crying about."
+        m "I’ll tell you a secret."
+        m "I thought about telling you what happens to humans who fall into the VOID."
+        m "Humans are erased from existence."
+        m "The parents that raised you, the friends up adored, the lovers you tangle with, not a single one will know you are missing. Not a single one knows you existed at all."
+        m "You will die here with no one to mourn you. Not in this world or your own." 
         "As the VOID encroaches the air seems to still. When the inky blackness reaches “The Man who Lost His Name” He turns and looks at you one last time."
         "The Man Who Lost His Name disperses in a puff of black smoke."
         "The Man Who Lost His Name blocks his forgotten memory from ———(character name)."
@@ -733,12 +988,76 @@ label start:
         jump theend
 
     label voidDominion:
+        "You hear a snap, and suddenly you're somewhere new."
+        scene window
+        show voidqueen with dissolve
         mystery "You have made a wise decision."
         y "I know."
         "The VOID QUEEN reveals herself from the shadows, a glistening scepter in hand."
+
+    label offer:
         v "You have proven yourself to me, you know. You're capable. Powerful. Ruthless."
         v "Just what I look for in a right hand."
         v "Join me, and we shall conquer universes...together."
+        if benevolence>27:
+            jump loneliness
+        else:
+            jump power
+    
+    label loneliness:
+        y "But of course."
+        "She hands you the scepter. It was just what you were looking for."
+        "Sleek, shiny...and sharp."
+        y "It's beautiful, isn't it?"
+        y "When something is destroyed by its own creation."
+        v "What do you--"
+        show voidqueen stab with hpunch
+        v "HOW COULD YOU DO THIS TO ME?"
+        y "You really thought anyone would join you that easily?"
+        y "You're disgusting."
+        y "This realm deserves to live. You on the other hand..."
+        y "This place is better off without you."
+        hide voidqueen with dissolve
+        "The Void Queen simply dissolves into shadows, leaving the scepter on the ground."
+        "You look out the window of the palace. Color and life has already begun to return to the realm."
+        scene cave
+        scene woods
+        scene shore at truecenter:
+            zoom 1.8
+        scene window 
+        y "I can see that, you know."
+        "It seems that maybe there was goodness in your heart after all."
+        "You watch the world from your new tower, alone."
+        "Your END is loneliness."
+        jump theend
+
+    label power:
+        y "It would be my pleasure."
+        "You accept the scepter."
+        "It weighs on you that you've joined sides with the very force that destroyed millions and their homes, but you ignore it."
+        "After all, they wouldn't understand the taste of this power."
+        v "Ah, here it is. The Nexus. Funny, isn't it?"
+        v "All this life, this realm itself, rests on this little gemstone."
+        "She drops the Nexus to the ground, where it shatters into thousands of piercing shards."
+        v "And now? It's gone."
+        v "Doesn't it feel so good to have so much power at your fingertips? It's addictive."
+        v "In time, you will learn to wield it."
+        v "For now, though?"
+        v "Let's find a new world to destroy."
+        "Your END is betrayal."
+        jump theend
+
+    label socliche:
+        scene living room 
+        y "Come on! Why did it have to glitch out right then?"
+        show luca stand
+        f "Because you keep making stupid decisions and breaking the game! You're not supposed to do that."
+        y "But the ending it was going to have was so cliche! I wanted to do something fun."
+        f "Sure, sure."
+        y "Well, that was fun. Too bad it's only that immersive the first time."
+        f "Maybe we can play a different game next time!"
+        "So...it was all a game?"
+        "Your END is...lunchtime, I guess."
 
 
 
