@@ -892,10 +892,10 @@ label start:
         v "I'll have you know that I HANDPICK all my advisors and handmaidens!"
         y "And you get ragebaited oh so easily."
         "The Void Queen looks like she's ready to fight you, when something strange happens."
-        scene window at truecenter with pixelate:
+        scene window at truecenter with pixellate:
             zoom 1.8
         y "How did we get here?"
-        scene cathedral at truecenter with pixelate:
+        scene cathedral at truecenter with pixellate:
             zoom 1.8
         y "...Huh?"
         jump socliche
@@ -917,9 +917,9 @@ label start:
         y "I'm sure if you opened yourself up to others a little bit people would be happy to be your friend. You know, you're a little intimidating with how little you talk."
         v "Yeah, I guess that's a fair point."
         v "Wow...t-t-t-"
-        hide voidqueen with pixelate
-        show voidqueen with pixelate
-        hide voidqueen with pixelate
+        hide voidqueen with pixellate
+        show voidqueen with pixellate
+        hide voidqueen with pixellate
         y "What's happening?"
         jump socliche
 
