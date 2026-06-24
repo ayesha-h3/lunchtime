@@ -3,8 +3,8 @@
 define y = Character("You", color="#d28ef1")
 define f = Character("Luca", color="#347b9e")
 define d = Character("Dottie", color="#b3b3b3")
-define c = Character("Coinflip")
-define v = Character("Void Queen")
+define c = Character("Coinflip", color="#FFFFFF")
+define v = Character("Void Queen", color="#BAB4EF")
 define b = Character("Bird", color="#2dbab8")
 define mystery = Character("???")
 define m = Character("Man Who Lost His Name", color="#B66222")
@@ -60,10 +60,19 @@ label start:
         "You've only taken a few steps before the ground begins to rumble."
         show luca concern
         f "What is THAT?"
+        hide luca
+        scene smallcrack at truecenter:
+            zoom 1.8
         "A crack in the road appears beneath your feet."
+        scene intersection
+        show luca concern
         f "Why aren't you moving? GET AWAY FROM THAT THING!"
         hide luca
+        scene mediumcrack at truecenter:
+            zoom 1.8
         y "I'm TRYING!"
+        scene biggestcrack at truecenter:
+            zoom 1.8
         "You try to jump away but it's too late. The crack widens to a gaping hole...pulling you into the newly opened abyss."
         scene black
         jump forest
@@ -286,13 +295,13 @@ label start:
         hide dottie
         show coinflip side at truecenter
         c "It's okay, kid. Sometimes, you gotta make the hard decisions. It's war, what did you expect?"
-        show coinflip death1 at top
+        show coinflip death1
         c "At least I know it's not going to be for nothing. I was honored to be of service."
         "You feel a tinge of remorse leaving Coinflip behind like this, but like he said, war calls for difficult choices."
         "After all, he said he would be fine. What reason did you have not to trust his judgment?"
-        show coinflip death2 at top
+        show coinflip death2
         c "I know you'll do the right thing when the time calls for it."
-        show coinflip rust at top
+        show coinflip rust
         "There's nothing left to do now but keep moving."
         hide coinflip
         $ coinalive = False
@@ -667,6 +676,9 @@ label start:
         m "I think we should head there now...and also run..."
         d "I said we don't have time, but does the situation really necessitate running?"
         m "YES! THERE'S ANOTHER BEETLE BEHIND YOU, AND THE VOID IS COMING TOWARDS US!"
+        hide dottie
+        hide noname
+        show beetle with hpunch
         menu:
             "Run as fast as you can.":
                 jump sacrificedottie
@@ -703,7 +715,8 @@ label start:
         d "You truly are a hero!"
         $dottiealive = True
         $benevolence+=5
-        $confronation+=5
+        $confrontation+=5
+        jump chooserank
 
     label sacrificedottie:
         hide beetle
@@ -726,6 +739,7 @@ label start:
         $ corpses +=1
 
     label chooserank:
+        hide dottie
         show noname sad at center
         m "Well, we're running out of time."
         m "I think our best course of action will be to lure the Void Queen out of her palace. All we have to do is announce our challenge, and her fragile ego will have to accept."
@@ -786,10 +800,10 @@ label start:
         jump battle
 
     label evil:
+        show noname terrified
         m "...what do you mean?"
         y "I mean I don't see the point in fighting her."
         y "And I don't see why it should be me. After all, I'm the reason so many have died."
-        show noname sad 
         m "No..."
         y "VOID QUEEN!"
         y "I surrender."
@@ -803,15 +817,15 @@ label start:
         menu:
             "I challenge you to a fight." if confrontation>8:
                 jump fight
-            "We need to talk." if benevolence>30:
+            "We need to talk." if benevolence>23:
                 jump diplomacy
-            "I challenge you to a test of wits." if insanity>15:
+            "I challenge you to a test of wits." if insanity>10:
                 jump mindgames
             "Come out. I'm not here to fight." if corpses>3:
                 jump surrender
             "Coward." if insanity>17:
                 jump slimeout
-            "It doesn't have to be like this." if benevolence>32:
+            "It doesn't have to be like this." if benevolence>30:
                 jump friendship
             "We have a score to settle.":
                 jump fight
@@ -854,6 +868,7 @@ label start:
         "It seems she's left you with no choice."
         "You reach in your pocket for the dagger."
         y "One way or another, you'll have to face justice."
+        hide voidqueen with dissolve
         "The moment the dagger touches the Void Queen, she dissolves into shadows."
         "The wind returns, swirling around the room."
         y "But I'm inside? Where is the wind coming from?"
@@ -1018,10 +1033,12 @@ label start:
 
     label voidDominion:
         "You hear a snap, and suddenly you're somewhere new."
-        scene window
-        show voidqueen with dissolve
+        scene window at truecenter with fade:
+            zoom 1.8
+        "You're in a strange, dark room, with a large stained glass window overlooking the field where you just were."
         mystery "You have made a wise decision."
         y "I know."
+        show voidqueen with dissolve
         "The VOID QUEEN reveals herself from the shadows, a glistening scepter in hand."
 
     label offer:
@@ -1094,4 +1111,6 @@ label start:
     
     # This ends the game.
     label theend:
+        scene end
+        "Thanks for playing!"
         return
