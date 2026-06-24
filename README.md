@@ -17,6 +17,9 @@ All characters are original art by @brdy.e. Backgrounds by @sleepymeep (with the
 
 Credits:
 Project Lead and Head Developer - @sleepymeep
+
 Head of Art - @brdy.e
+
 Assisting Developer (GUI) - @kjoy116
+
 Built with Ren'Py Visual Novel Engine
